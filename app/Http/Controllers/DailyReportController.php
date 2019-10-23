@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\DailyReport;
 
 class DailyReportController extends Controller
 {
@@ -12,10 +13,18 @@ class DailyReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $daily_report;
+
+    public function __construct(DailyReport $instanceClass)
+    {
+        $this->daily_report = $instanceClass;
+    }
+
     public function index()
     {
         //
-        return view('user.daily_report.index');
+        $daily_reports = $this->daily_report->all();
+        return view('user.daily_report.index', compact('daily_reports'));
     }
 
     /**
