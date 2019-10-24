@@ -35,6 +35,7 @@ class DailyReportController extends Controller
     public function create()
     {
         //
+        return view('user.daily_report.create');
     }
 
     /**
@@ -46,6 +47,9 @@ class DailyReportController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        $this->daily_report->fill($input)->save();
+        return redirect()->route('daily_report.index');
     }
 
     /**
