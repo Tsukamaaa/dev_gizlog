@@ -17,7 +17,7 @@ class DailyReportsTableSeeder extends Seeder
         DB::table('daily_reports')->insert([
             [
                 'title'             => 'dailyreportのtitle',
-                'user_id'           => '1',
+                // 'user_id'           => '1',認証実装時に入れる
                 'content'           => 'ここは本文',
                 'reporting_time'    => '20191021',
                 'created_at'        => Carbon::create(2019, 10, 21),
