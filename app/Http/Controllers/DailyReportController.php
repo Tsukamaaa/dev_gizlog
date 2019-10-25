@@ -53,6 +53,18 @@ class DailyReportController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'reporting_time' => 'required',
+            'title'          => 'required|max:30',
+            'content'        => 'required|max:1000'
+        ]);
+        // if ($validator->fails()) {
+        //     return redirect()->route('daily_report.index')
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
+
+
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->daily_report->fill($input)->save();
