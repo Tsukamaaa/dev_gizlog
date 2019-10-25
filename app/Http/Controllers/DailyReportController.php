@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DailyReportController extends Controller
 {
@@ -111,4 +112,14 @@ class DailyReportController extends Controller
         $this->daily_report->find($id)->delete();
         return redirect()->route('daily_report.index');
     }
+
+    // public function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'reporting_time' => 'required',
+    //         'title'          => 'required'|'max:30',
+    //         'content'        => 'required'|'max:1000'
+    //     ]);
+    // }
+
 }
