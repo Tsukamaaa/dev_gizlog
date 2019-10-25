@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
+use Auth;
 
 class DailyReportController extends Controller
 {
@@ -23,7 +24,7 @@ class DailyReportController extends Controller
     public function index()
     {
         //
-        $daily_reports = $this->daily_report->all();
+        $daily_reports = $this->daily_report->getByUserId(Auth::id());
         return view('user.daily_report.index', compact('daily_reports'));
     }
 
@@ -48,6 +49,7 @@ class DailyReportController extends Controller
     {
         //
         $input = $request->all();
+        $input['user_id'] = Auth::id();
         $this->daily_report->fill($input)->save();
         return redirect()->route('daily_report.index');
     }
@@ -61,6 +63,8 @@ class DailyReportController extends Controller
     public function show($id)
     {
         //
+        $daily_report = $this->daily_report->find($id);
+        return view('user.daily_report.show', compact('daily_report'));
     }
 
     /**
@@ -72,6 +76,8 @@ class DailyReportController extends Controller
     public function edit($id)
     {
         //
+        $daily_report = $this->daily_report->find($id);
+        return view('user.daily_report.edit', compact('daily_report'));
     }
 
     /**
@@ -84,6 +90,10 @@ class DailyReportController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->daily_report->find($id)->fill($input)->save();
+        return redirect()->route('daily_report.index');
     }
 
     /**
@@ -94,6 +104,7 @@ class DailyReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->daily_report->find($id)->delete();
+        return redirect()->route('daily_report.index');
     }
 }
