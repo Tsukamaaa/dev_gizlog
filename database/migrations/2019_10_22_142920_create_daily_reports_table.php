@@ -15,7 +15,7 @@ class CreateDailyReportsTable extends Migration
     {
         Schema::create('daily_reports', function (Blueprint $table) {
             $table->increments('id');
-            // $table->integer('user_id'); 認証実装時に入れる
+            $table->integer('user_id');
             $table->string('title');
             $table->string('content');
             $table->date('reporting_time');
