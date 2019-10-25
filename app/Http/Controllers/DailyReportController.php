@@ -21,10 +21,14 @@ class DailyReportController extends Controller
         $this->daily_report = $instanceClass;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $daily_reports = $this->daily_report->getByUserId(Auth::id());
+        if (!empty($request['search-month'])) {
+           $daily_reports = $this->daily_report->getByYearAndMonth($request['search-month']);
+        } else {
+            $daily_reports = $this->daily_report->getByUserId(Auth::id());
+        }
         return view('user.daily_report.index', compact('daily_reports'));
     }
 
