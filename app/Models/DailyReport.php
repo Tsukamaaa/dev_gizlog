@@ -19,4 +19,9 @@ class DailyReport extends Model
         'title',
         'content'
     ];
+
+    public function getByUserId($id)
+    {
+        return $this->where('user_id', $id)->get();
+    }
 }
