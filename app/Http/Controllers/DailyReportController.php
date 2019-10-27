@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use Auth;
-use Illuminate\Support\Facades\Validator;
+use Validator;
 
 class DailyReportController extends Controller
 {
@@ -52,18 +52,18 @@ class DailyReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $validator = Validator::make($request->all(),[
-            'reporting_time' => 'required',
-            'title'          => 'required|max:30',
-            'content'        => 'required|max:1000'
-        ]);
-        // if ($validator->fails()) {
-        //     return redirect()->route('daily_report.index')
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
 
+        $this->validate($request, [
+            'reporting_time' => 'required|date',
+            'title'          => 'required|string|max:30',
+            'content'        => 'required|string|max:1000'
+        ],[
+            'reporting_time.required' => '入力必須の項目です。',
+            'title.required'          => '入力必須の項目です。',
+            'title.max'               => ':max文字以内で入力してください。',
+            'content.required'        => '入力必須の項目です。',
+            'content.max'             => ':max文字以内で入力してください。'
+        ]);
 
         $input = $request->all();
         $input['user_id'] = Auth::id();
@@ -124,14 +124,4 @@ class DailyReportController extends Controller
         $this->daily_report->find($id)->delete();
         return redirect()->route('daily_report.index');
     }
-
-    // public function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'reporting_time' => 'required',
-    //         'title'          => 'required'|'max:30',
-    //         'content'        => 'required'|'max:1000'
-    //     ]);
-    // }
-
 }
