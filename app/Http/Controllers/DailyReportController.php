@@ -107,6 +107,18 @@ class DailyReportController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'reporting_time' => 'required|date',
+            'title'          => 'required|string|max:30',
+            'content'        => 'required|string|max:1000'
+        ],[
+            'reporting_time.required' => '入力必須の項目です。',
+            'title.required'          => '入力必須の項目です。',
+            'title.max'               => ':max文字以内で入力してください。',
+            'content.required'        => '入力必須の項目です。',
+            'content.max'             => ':max文字以内で入力してください。'
+        ]);
+
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->daily_report->find($id)->fill($input)->save();
