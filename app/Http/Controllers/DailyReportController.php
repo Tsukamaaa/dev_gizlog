@@ -24,7 +24,6 @@ class DailyReportController extends Controller
 
     public function index(Request $request)
     {
-        //
         if (!empty($request['search-month'])) {
            $daily_reports = $this->daily_report->getByYearAndMonth($request['search-month']);
         } else {
@@ -40,7 +39,6 @@ class DailyReportController extends Controller
      */
     public function create()
     {
-        //
         return view('user.daily_report.create');
     }
 
@@ -52,7 +50,6 @@ class DailyReportController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'reporting_time' => 'required|date',
             'title'          => 'required|string|max:30',
@@ -79,7 +76,6 @@ class DailyReportController extends Controller
      */
     public function show($id)
     {
-        //
         $daily_report = $this->daily_report->find($id);
         return view('user.daily_report.show', compact('daily_report'));
     }
@@ -92,7 +88,6 @@ class DailyReportController extends Controller
      */
     public function edit($id)
     {
-        //
         $daily_report = $this->daily_report->find($id);
         return view('user.daily_report.edit', compact('daily_report'));
     }
@@ -106,7 +101,6 @@ class DailyReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $this->validate($request, [
             'reporting_time' => 'required|date',
             'title'          => 'required|string|max:30',
