@@ -4,7 +4,7 @@
 <h1 class="brand-header">日報編集</h1>
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => ['daily_report.update', $daily_report->id], 'method' => 'PUT']) !!}
+    {!! Form::open(['route' => ['daily_report.update', $dailyReport->id], 'method' => 'PUT']) !!}
 
       @if ($errors->has('reporting_time'))
         <div class="form-group form-size-small has-error">
@@ -27,7 +27,7 @@
         <div class="form-group">
       @endif
 
-          {!! Form::input('text', 'title', $daily_report->title, ['class' => "form-control {{ $errors->has('title') ? 'in-valid' : '' }}", 'placeholder' =>'Title']) !!}
+          {!! Form::input('text', 'title', $dailyReport->title, ['class' => "form-control {{ $errors->has('title') ? 'in-valid' : '' }}", 'placeholder' =>'Title']) !!}
 
           @if ($errors->has('title'))
             <span class="help-block" role="alert">
@@ -42,7 +42,7 @@
         <div class="form-group">
       @endif
 
-          {!! Form::textarea('content', $daily_report->content, ['class' => "form-control {{ $errors->has('content') ? 'in-valid' : '' }}", 'placeholder' => 'Content']) !!}
+          {!! Form::textarea('content', $dailyReport->content, ['class' => "form-control {{ $errors->has('content') ? 'in-valid' : '' }}", 'placeholder' => 'Content']) !!}
         
           @if ($errors->has('content'))
             <span class="help-block" role="alert">
