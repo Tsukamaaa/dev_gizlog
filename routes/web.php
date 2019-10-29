@@ -21,13 +21,13 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
             return view('user.auth.login');
         }
     });
+    Route::resource('daily_report', 'DailyReportController');
 
     Route::get('slack/login', 'Auth\AuthenticateController@callSlackApi');
     Route::get('callback', 'Auth\AuthenticateController@loginBySlackUserInfo');
 
     Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/register/{query}', 'Auth\RegisterController@showRegistrationForm');
-
 
     Route::get('home', 'UserController@index')->name('home');
 
@@ -91,4 +91,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
 });
 
-Route::resource('daily_report', 'DailyReportController');
