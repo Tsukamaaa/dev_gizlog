@@ -12,7 +12,7 @@
         <div class="form-group form-size-small">
       @endif
 
-          {!! Form::input('date','reporting_time', date('Y-m-j'), ['class' => "form-control {{ $errors->has('reporting_time') ? ' is-invalid' : '' }}" ]) !!}
+          {!! Form::input('date','reporting_time', date('Y-m-d'), ['class' => "form-control {{ $errors->has('reporting_time') ? ' is-invalid' : '' }}" ]) !!}
 
           @if ($errors->has('reporting_time'))
             <span class="help-block" role="alert">
