@@ -19,13 +19,8 @@ class DailyReport extends Model
         'content'
     ];
 
-    public function getByUserId($id)
-    {
-        return $this->where('user_id', $id)->get();
-    }
-
-    public function getByYearAndMonth($time)
-    {
-        return $this->where('reporting_time', 'LIKE', '%'.$time.'%')->get();
-    }
+    // public function getByUserId($id)
+    // {
+    //     return $this->where('user_id', $id)->get();
+    // }
 }
