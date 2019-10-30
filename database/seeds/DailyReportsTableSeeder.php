@@ -23,7 +23,7 @@ class DailyReportsTableSeeder extends Seeder
                 'updated_at'        => Carbon::create(2019, 10, 21),
             ],[
                 'title'             => 'Seederのテスト',
-                'user_id'           => '4',
+                'user_id'           => '3',
                 'content'           => '多めにテストデータを用意しておく',
                 'reporting_time'    => '20190821',
                 'created_at'        => Carbon::create(2019, 04, 21),
