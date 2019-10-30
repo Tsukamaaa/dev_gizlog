@@ -6,7 +6,7 @@ use Carbon\Carbon;
 class DailyReportsTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * DBのdaily_reportsテーブルに初期値を格納
      *
      * @return void
      */
