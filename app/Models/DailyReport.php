@@ -26,6 +26,6 @@ class DailyReport extends Model
 
     public function getByYearAndMonth($time)
     {
-        return $this->where('reporting_time', 'LIKE', "%{$time}%")->get();
+        return $this->where('reporting_time', 'LIKE', '%'.$time.'%')->get();
     }
 }
