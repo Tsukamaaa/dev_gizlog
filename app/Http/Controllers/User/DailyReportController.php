@@ -11,6 +11,11 @@ use Validator;
 class DailyReportController extends Controller
 {
     private $dailyReport;
+    private $rules = [
+        'reporting_time' => 'required|date',
+        'title'          => 'required|string|max:30',
+        'content'        => 'required|string|max:1000'
+    ];
     
     public function __construct(DailyReport $dailyReport)
     {
@@ -25,12 +30,15 @@ class DailyReportController extends Controller
     public function index(Request $request)
     {
         $getRequest = $request->all(); 
+
         if (!empty($getRequest['search-month'])) {
             $dailyReports = $this->dailyReport->getByYearAndMonth($getRequest['search-month']);
         } else {
             $dailyReports = $this->dailyReport->getByUserId(Auth::id());
         }
         return view('user.daily_report.index', compact('dailyReports'));
+
+        $dailyReports = $this->dailyReport->getByUserId(Auth::id());
     }
 
     /**
@@ -51,21 +59,12 @@ class DailyReportController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'reporting_time' => 'required|date',
-            'title'          => 'required|string|max:30',
-            'content'        => 'required|string|max:1000'
-        ],[
-            'reporting_time.required' => '入力必須の項目です。',
-            'title.required'          => '入力必須の項目です。',
-            'title.max'               => ':max文字以内で入力してください。',
-            'content.required'        => '入力必須の項目です。',
-            'content.max'             => ':max文字以内で入力してください。'
-        ]);
+        $rules = $this->rules;
+        $request->validate($rules);
 
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        $this->daily_report->fill($input)->save();
+        $this->dailyReport->fill($input)->save();
         return redirect()->route('daily_report.index');
     }
 
@@ -102,17 +101,8 @@ class DailyReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'reporting_time' => 'required|date',
-            'title'          => 'required|string|max:30',
-            'content'        => 'required|string|max:1000'
-        ],[
-            'reporting_time.required' => '入力必須の項目です。',
-            'title.required'          => '入力必須の項目です。',
-            'title.max'               => ':max文字以内で入力してください。',
-            'content.required'        => '入力必須の項目です。',
-            'content.max'             => ':max文字以内で入力してください。'
-        ]);
+        $rules = $this->rules;
+        $request->validate($rules);
 
         $input = $request->all();
         $input['user_id'] = Auth::id();
