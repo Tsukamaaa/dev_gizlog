@@ -23,26 +23,26 @@ class DailyReportController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
-     *
+     * 日報機能画面の表示処理
+     * if文と::queryを用いて日付検索の処理
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         $getRequest = $request->all(); 
+        $query = DailyReport::query()->where('user_id', Auth::id());
 
         if (!empty($getRequest['search-month'])) {
-            $dailyReports = $this->dailyReport->getByYearAndMonth($getRequest['search-month']);
-        } else {
-            $dailyReports = $this->dailyReport->getByUserId(Auth::id());
+            $query->where('reporting_time', 'LIKE', '%'.$getRequest['search-month'].'%');
         }
-        return view('user.daily_report.index', compact('dailyReports'));
 
-        $dailyReports = $this->dailyReport->getByUserId(Auth::id());
+        $dailyReports = $query->get();
+        return view('user.daily_report.index', compact('dailyReports'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 日報作成画面の表示処理
+     * 
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,7 +52,9 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 日報作成画面から新規作成を行った時の処理
+     * validationを行った後にDBへの保存処理
+     * validationが発火したら日報作成にリダイレクト
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -69,8 +71,8 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * 日報詳細画面の表示処理
+     * 選択したものの詳細が表示される
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -81,7 +83,8 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 日報詳細から日報編集画面への表示処理
+     * 
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -93,7 +96,8 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 編集画面からvalidationした後に日報の更新処理
+     * validationが発火したら編集画面にリダイレクト
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -111,7 +115,7 @@ class DailyReportController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * ソフトデリートの実装
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
