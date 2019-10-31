@@ -29,11 +29,9 @@ class DailyReportController extends Controller
      */
     public function index(Request $request)
     {
-        $getRequest = $request->all(); 
         $query = DailyReport::query()->where('user_id', Auth::id());
-
-        if (!empty($getRequest['search-month'])) {
-            $query->where('reporting_time', 'LIKE', '%'.$getRequest['search-month'].'%');
+        if (!empty($request->get('search-month'))) {
+            $query->where('reporting_time', 'LIKE', '%'.$request->get('search-month').'%');
         }
 
         $dailyReports = $query->get();
