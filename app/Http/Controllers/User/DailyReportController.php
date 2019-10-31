@@ -25,13 +25,14 @@ class DailyReportController extends Controller
     /**
      * 日報機能画面の表示処理
      * if文と::queryを用いて日付検索の処理
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         $query = DailyReport::query()->where('user_id', Auth::id());
         if (!empty($request->get('search-month'))) {
-            $query->where('reporting_time', 'LIKE', '%'.$request->get('search-month').'%');
+            $query->where('reporting_time', 'LIKE', $request->get('search-month').'%');
         }
 
         $dailyReports = $query->get();
@@ -41,7 +42,6 @@ class DailyReportController extends Controller
     /**
      * 日報作成画面の表示処理
      * 
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -51,16 +51,13 @@ class DailyReportController extends Controller
 
     /**
      * 日報作成画面から新規作成を行った時の処理
-     * validationを行った後にDBへの保存処理
-     * validationが発火したら日報作成にリダイレクト
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $rules = $this->rules;
-        $request->validate($rules);
+        $request->validate($this->rules);
 
         $input = $request->all();
         $input['user_id'] = Auth::id();
@@ -71,6 +68,7 @@ class DailyReportController extends Controller
     /**
      * 日報詳細画面の表示処理
      * 選択したものの詳細が表示される
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -83,7 +81,6 @@ class DailyReportController extends Controller
     /**
      * 日報詳細から日報編集画面への表示処理
      * 
-     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -103,8 +100,7 @@ class DailyReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = $this->rules;
-        $request->validate($rules);
+        $request->validate($this->rules);
 
         $input = $request->all();
         $input['user_id'] = Auth::id();
