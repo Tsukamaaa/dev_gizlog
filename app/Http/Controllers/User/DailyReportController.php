@@ -19,18 +19,12 @@ class DailyReportController extends Controller
     
     /**
      * 日報機能画面の表示処理
-     * if文と::queryを用いて日付検索の処理
      * 
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $query = DailyReport::query()->where('user_id', Auth::id());
-        if (!empty($request->get('search-month'))) {
-            $query->where('reporting_time', 'LIKE', $request->get('search-month').'%');
-        }
-
-        $dailyReports = $query->get();
+        $dailyReports = $this->dailyReport->getDailyReport($request);
         return view('user.daily_report.index', compact('dailyReports'));
     }
 
