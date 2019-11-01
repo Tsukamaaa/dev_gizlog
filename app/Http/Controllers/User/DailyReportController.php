@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use Auth;
-use Validator;
 use App\Http\Requests\DailyReportRequest;
 
 class DailyReportController extends Controller
