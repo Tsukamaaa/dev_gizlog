@@ -26,6 +26,6 @@ class DailyReport extends Model
             $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
         }
 
-        return $dailyReports = $query->latest()->get();
+        return $query->latest()->get();
     }
 }
