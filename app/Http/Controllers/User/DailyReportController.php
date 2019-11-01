@@ -7,15 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use Auth;
 use Validator;
+use App\Http\Requests\DailyReportRequest;
 
 class DailyReportController extends Controller
 {
     private $dailyReport;
-    private $rules = [
-        'reporting_time' => 'required|date',
-        'title'          => 'required|string|max:30',
-        'content'        => 'required|string|max:1000'
-    ];
     
     public function __construct(DailyReport $dailyReport)
     {
@@ -55,10 +51,8 @@ class DailyReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DailyReportRequest $request)
     {
-        $request->validate($this->rules);
-
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->dailyReport->fill($input)->save();
@@ -98,10 +92,8 @@ class DailyReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DailyReportRequest $request, $id)
     {
-        $request->validate($this->rules);
-
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->dailyReport->find($id)->fill($input)->save();
