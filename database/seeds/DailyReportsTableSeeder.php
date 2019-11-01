@@ -35,7 +35,7 @@ class DailyReportsTableSeeder extends Seeder
                 'reporting_time'    => Carbon::yesterday(),
                 'created_at'        => Carbon::create(2019, 04, 01),
                 'updated_at'        => Carbon::create(2019, 05, 01),
-            ]
+            ],
         ]);
 
         factory(App\Models\DailyReport::class, 30)->create();
