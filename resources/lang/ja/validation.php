@@ -44,7 +44,7 @@ return [
     'max'                  => [
         'numeric' => ':attributeは:max以下にしてください。',
         'file'    => ':attributeは:max KB以下のファイルにしてください。.',
-        'string'  => ':attributeは:max文字以下にしてください。',
+        'string'  => ':max文字以内で入力してください。',
         'array'   => ':attributeは:max個以下にしてください。',
     ],
     'mimes'                => ':attributeは:valuesタイプのファイルにしてください。',
@@ -57,7 +57,7 @@ return [
     'not_in'               => '選択された:attributeは正しくありません。',
     'numeric'              => ':attributeは数字にしてください。',
     'regex'                => ':attributeの書式が正しくありません。',
-    'required'             => ':attributeは必須です。',
+    'required'             => '入力必須の項目です。',
     'required_if'          => ':otherが:valueの時、:attributeは必須です。',
     'required_with'        => ':valuesが存在する時、:attributeは必須です。',
     'required_with_all'    => ':valuesが存在する時、:attributeは必須です。',
@@ -103,6 +103,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => []
 
 ];
