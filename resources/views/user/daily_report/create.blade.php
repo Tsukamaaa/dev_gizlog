@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'daily_report.store']) !!}
-      <div class="form-group form-size-small  @if ($errors->has('reporting_time')) {{ 'has-error' }} @endif ">
+      <div class="form-group form-size-small  @if ($errors->has('reporting_time')) 'has-error' @endif ">
         {!! Form::input('date','reporting_time', date('Y-m-d'), ['class' => "form-control {{ $errors->has('reporting_time') ? ' is-invalid' : '' }}" ]) !!}
         @if ($errors->has('reporting_time'))
           <span class="help-block" role="alert">
@@ -14,7 +14,7 @@
         @endif
       </div>
 
-      <div class="form-group @if ($errors->has('title')) {{ 'has-error' }} @endif">
+      <div class="form-group @if ($errors->has('title')) 'has-error' @endif">
         {!! Form::text('title', null, ['class' => "form-control {{ $errors->has('title') ? 'in-valid' : '' }}", 'placeholder' =>'Title']) !!}
         @if ($errors->has('title'))
           <span class="help-block" role="alert">
@@ -23,7 +23,7 @@
         @endif
       </div>
 
-      <div class="form-group @if ($errors->has('content')) {{ 'has-error' }} @endif">
+      <div class="form-group @if ($errors->has('content')) 'has-error' @endif">
         {!! Form::textarea('content', null, ['class' => "form-control {{ $errors->has('content') ? 'in-valid' : '' }}", 'placeholder' => 'Content']) !!}
         @if ($errors->has('content'))
           <span class="help-block" role="alert">
