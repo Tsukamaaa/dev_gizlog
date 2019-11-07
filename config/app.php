@@ -221,6 +221,6 @@ return [
     | Faker Setting
     |--------------------------------------------------------------------------
     */
-    'faker_locale' => env('DEV_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => env('DEV_FAKER_LOCALE', 'ja_JP'),
 
 ];
