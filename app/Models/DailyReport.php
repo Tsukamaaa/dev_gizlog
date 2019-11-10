@@ -20,12 +20,16 @@ class DailyReport extends Model
         'content'
     ];
 
-    public function getDailyReport($data) {
-        $query = DailyReport::query()->where('user_id', Auth::id());
-        if (!empty($data->get('search-month'))) {
-            $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
-        }
+    // public function getDailyReport($data) {
+    //     $query = self::query()->where('user_id', Auth::id());
+    //     if (!empty($data->get('search-month'))) {
+    //         $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
+    //     }
 
-        return $query->latest()->get();
+    //     return $query->latest()->get();
+    // }
+    public function scopeGetDailyReport($query, $data)
+    {
+        return $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
     }
 }
