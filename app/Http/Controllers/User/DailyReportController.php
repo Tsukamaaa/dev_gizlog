@@ -26,7 +26,7 @@ class DailyReportController extends Controller
      */
     public function index(SearchMonthRequest $request)
     {
-        $dailyReports = DailyReport::getDailyReport($request)->where('user_id', Auth::id())->latest()->get();
+        $dailyReports = DailyReport::getDailyReport($request)->where('user_id', Auth::id())->orderBy('reporting_time', 'desc')->get();
         return view('user.daily_report.index', compact('dailyReports'));
     }
 
