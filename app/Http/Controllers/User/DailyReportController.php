@@ -26,7 +26,7 @@ class DailyReportController extends Controller
      */
     public function index(SearchMonthRequest $request)
     {
-        $request->flash();
+        $request->flashOnly('search-month');
         $dailyReports = DailyReport::getDailyReport($request)->where('user_id', Auth::id())
                                                              ->orderBy('reporting_time', 'desc')
                                                              ->latest()
