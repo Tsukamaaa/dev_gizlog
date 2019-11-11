@@ -21,11 +21,12 @@
         </tr>
       </thead>
       <tbody>
+      <?php use \Illuminate\Support\Str; ?>
         @foreach ($dailyReports as $dailyReport)
           <tr class="row">
             <td class="col-xs-2">{{ $dailyReport->reporting_time->format('m/d(D)') }}</td>
-            <td class="col-xs-3">{{ \Illuminate\Support\Str::limit($dailyReport->title, 26, '...') }}</td>
-            <td class="col-xs-5">{{ \Illuminate\Support\Str::limit($dailyReport->content, 46, '...') }}</td>
+            <td class="col-xs-3">{{ Str::limit($dailyReport->title, 26, '...') }}</td>
+            <td class="col-xs-5">{{ Str::limit($dailyReport->content, 46, '...') }}</td>
             <td class="col-xs-2"><a class="btn" href="{{ route('daily_report.show', $dailyReport->id) }}"><i class="fa fa-book"></i></a></td>
           </tr>
         @endforeach
