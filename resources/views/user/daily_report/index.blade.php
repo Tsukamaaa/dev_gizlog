@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
     <form>
-      <input class="form-control" name="search-month" type="month">
+      <input class="form-control" name="search-month" type="month" value="{{ old('search-month') }}">
       <button type="submit" class="btn btn-icon"><i class="fa fa-search"></i></button>
     </form>
     <a class="btn btn-icon" href="/daily_report/create"><i class="fa fa-plus"></i></a>
