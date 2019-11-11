@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use Auth;
 use App\Http\Requests\DailyReportRequest;
+use App\Http\Requests\SearchMonthRequest;
 
 class DailyReportController extends Controller
 {
@@ -20,12 +21,12 @@ class DailyReportController extends Controller
     /**
      * 日報機能画面の表示処理
      * 
+     * @param  App\Http\Requests\SearchMonthRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(SearchMonthRequest $request)
     {
-        $query = DailyReport::query()->where('user_id', Auth::id());
-        $dailyReports = DailyReport::GetDailyReport($request)->latest()->get();
+        $dailyReports = DailyReport::getDailyReport($request)->where('user_id', Auth::id())->latest()->get();
         return view('user.daily_report.index', compact('dailyReports'));
     }
 
@@ -42,7 +43,7 @@ class DailyReportController extends Controller
     /**
      * 日報作成画面から新規作成を行った時の処理
      * 
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\DailyReportRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(DailyReportRequest $request)
@@ -82,7 +83,7 @@ class DailyReportController extends Controller
      * 編集画面からvalidationした後に日報の更新処理
      * validationが発火したら編集画面にリダイレクト
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\DailyReportRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
