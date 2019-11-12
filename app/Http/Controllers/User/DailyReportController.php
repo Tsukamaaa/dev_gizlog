@@ -32,7 +32,9 @@ class DailyReportController extends Controller
             $query = DailyReport::SearchDailyReportDailyReport($request);
         }
 
-        $dailyReports = $query->latest()->get();
+        $dailyReports = $query->orderBy('reporting_time', 'desc')
+                              ->latest()
+                              ->get();
         return view('user.daily_report.index', compact('dailyReports'));
     }
 
