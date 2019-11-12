@@ -27,7 +27,6 @@ class DailyReport extends Model
     
     public function scopeSearchMonthDailyReport($query, $data)
     {
-        return $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%')
-                     ->orderBy('reporting_time', 'desc');
+        return $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
     }
 }
