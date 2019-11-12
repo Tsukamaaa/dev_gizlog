@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DailyReport;
 use Auth;
 use App\Http\Requests\DailyReportRequest;
-use App\Http\Requests\SearchMonthRequest;
+use App\Http\Requests\SearchDailyReportRequest;
 
 class DailyReportController extends Controller
 {
@@ -21,16 +21,18 @@ class DailyReportController extends Controller
     /**
      * 日報機能画面の表示処理
      * 
-     * @param  App\Http\Requests\SearchMonthRequest $request
+     * @param  App\Http\Requests\SearchDailyReportRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchMonthRequest $request)
+    public function index(SearchDailyReportRequest $request)
     {
         $request->flashOnly('search-month');
-        $dailyReports = DailyReport::getDailyReport($request)->where('user_id', Auth::id())
-                                                             ->orderBy('reporting_time', 'desc')
-                                                             ->latest()
-                                                             ->get();
+        $query = DailyReport::getDailyReport();
+        if (!empty($request->get('search-month'))) {
+            $query = DailyReport::SearchDailyReportDailyReport($request);
+        }
+
+        $dailyReports = $query->latest()->get();
         return view('user.daily_report.index', compact('dailyReports'));
     }
 
