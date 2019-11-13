@@ -20,13 +20,13 @@ class DailyReport extends Model
         'content'
     ];
 
-    public function scopeGetDailyReport($query)
+    public function scopeGetDailyReport($query, $data)
     {
-        return $query->where('user_id', Auth::id());
-    }
-    
-    public function scopeSearchMonthDailyReport($query, $data)
-    {
-        return $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
+        $query->where('user_id', Auth::id());
+        if (!empty($data->get('search-month'))) {
+            $query->where('reporting_time', 'LIKE', $data->get('search-month'). '%');
+        }
+
+        return $query;
     }
 }
