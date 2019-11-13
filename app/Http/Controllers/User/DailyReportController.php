@@ -27,14 +27,10 @@ class DailyReportController extends Controller
     public function index(SearchDailyReportRequest $request)
     {
         $request->flashOnly('search-month');
-        $query = $this->dailyReport->getDailyReport();
-        if (!empty($request->get('search-month'))) {
-            $query = $this->dailyReport->searchDailyReportDailyReport($request);
-        }
-
-        $dailyReports = $query->orderBy('reporting_time', 'desc')
-                              ->latest()
-                              ->get();
+        $dailyReports = $this->dailyReport->getDailyReport($request)
+                                          ->orderBy('reporting_time', 'desc')
+                                          ->latest()
+                                          ->get();
         return view('user.daily_report.index', compact('dailyReports'));
     }
 
