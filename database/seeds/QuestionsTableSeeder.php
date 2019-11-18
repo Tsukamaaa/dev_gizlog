@@ -20,6 +20,8 @@ class QuestionsTableSeeder extends Seeder
                 'tag_category_id' => 'front',
                 'title' => 'テスト',
                 'content' => 'テスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
             ]
         ]);
     }
