@@ -216,4 +216,6 @@ return [
         'Carbon' => Carbon\Carbon::class,
     ],
 
+    'faker_local' => 'ja_JP'
+
 ];
