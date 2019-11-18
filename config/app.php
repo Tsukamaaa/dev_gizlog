@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------
@@ -216,6 +216,5 @@ return [
         'Carbon' => Carbon\Carbon::class,
     ],
 
-    'faker_local' => 'ja_JP'
-
+    'faker_locale' => env('DEV_FAKER_LOCALE', 'en_US')
 ];
