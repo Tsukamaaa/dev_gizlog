@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
+    private $question;
+
+    public function __construct(Question $question)
+    {
+        $this->question = $question;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = $this->question->all();
+        //$questionsと$usersをリレーションするっぽい
+        return view('user.question.index', compact('questions'));
     }
 
     /**
