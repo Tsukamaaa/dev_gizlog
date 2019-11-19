@@ -18,8 +18,32 @@ class QuestionsTableSeeder extends Seeder
             [
                 'user_id' => 4,
                 'tag_category_id' => 'front',
-                'title' => 'テスト',
-                'content' => 'テスト',
+                'title' => 'frontテスト',
+                'content' => 'frontテスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
+            ],
+            [
+                'user_id' => 4,
+                'tag_category_id' => 'back',
+                'title' => 'backテスト',
+                'content' => 'backテスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
+            ],
+            [
+                'user_id' => 4,
+                'tag_category_id' => 'infra',
+                'title' => 'infraテスト',
+                'content' => 'infraテスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
+            ],
+            [
+                'user_id' => 4,
+                'tag_category_id' => 'infra',
+                'title' => 'infraテスト',
+                'content' => 'infraテスト',
                 'created_at' => Carbon::yesterday(),
                 'updated_at' => Carbon::yesterday()
             ]
