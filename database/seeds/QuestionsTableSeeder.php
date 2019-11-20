@@ -17,7 +17,7 @@ class QuestionsTableSeeder extends Seeder
         DB::table('questions')->insert([
             [
                 'user_id' => 4,
-                'tag_category_id' => 'front',
+                'tag_category_id' => '1',
                 'title' => 'frontテスト',
                 'content' => 'frontテスト',
                 'created_at' => Carbon::yesterday(),
@@ -25,7 +25,7 @@ class QuestionsTableSeeder extends Seeder
             ],
             [
                 'user_id' => 4,
-                'tag_category_id' => 'back',
+                'tag_category_id' => '2',
                 'title' => 'backテスト',
                 'content' => 'backテスト',
                 'created_at' => Carbon::yesterday(),
@@ -33,7 +33,7 @@ class QuestionsTableSeeder extends Seeder
             ],
             [
                 'user_id' => 4,
-                'tag_category_id' => 'infra',
+                'tag_category_id' => '3',
                 'title' => 'infraテスト',
                 'content' => 'infraテスト',
                 'created_at' => Carbon::yesterday(),
@@ -41,7 +41,7 @@ class QuestionsTableSeeder extends Seeder
             ],
             [
                 'user_id' => 4,
-                'tag_category_id' => 'infra',
+                'tag_category_id' => '4',
                 'title' => 'infraテスト',
                 'content' => 'infraテスト',
                 'created_at' => Carbon::yesterday(),
