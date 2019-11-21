@@ -46,6 +46,30 @@ class QuestionsTableSeeder extends Seeder
                 'content' => 'infraテスト',
                 'created_at' => Carbon::yesterday(),
                 'updated_at' => Carbon::yesterday()
+            ],
+            [
+                'user_id' => 1,
+                'tag_category_id' => '4',
+                'title' => 'infraテスト',
+                'content' => 'infraテスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
+            ],
+            [
+                'user_id' => 2,
+                'tag_category_id' => '4',
+                'title' => 'infraテスト',
+                'content' => 'infraテスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
+            ],
+            [
+                'user_id' => 3,
+                'tag_category_id' => '4',
+                'title' => 'infraテスト',
+                'content' => 'infraテスト',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday()
             ]
         ]);
     }
