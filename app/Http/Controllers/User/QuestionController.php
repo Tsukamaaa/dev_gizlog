@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class QuestionController extends Controller
 {
@@ -23,9 +24,13 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = $this->question->all();
+        // $question = Question::find(2)->user;
+        $questions = Question::all();
         //$questionsと$usersをリレーションするっぽい
+        // dd(Question::all(), $questions);
+        //Question::find()の引数はquestion_id
         return view('user.question.index', compact('questions'));
+        // return view('user.question.index', compact('questions'));
     }
 
     /**
