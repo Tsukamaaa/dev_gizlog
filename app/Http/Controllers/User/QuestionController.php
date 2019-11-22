@@ -24,7 +24,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::paginate(10);
         return view('user.question.index', compact('questions'));
     }
 
@@ -42,7 +42,7 @@ class QuestionController extends Controller
      *  Confirmで投稿する内容の確認
      */
 
-    public function confirm(Request $request)
+    public function confirm(Request $request) //ここでバリデーション
     {
         $question = new Question($request->all());
         $question['user_id'] = Auth::id();
@@ -55,7 +55,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //ここでバリデーションするかは微妙
     {
         $input = $request->all();
         $this->question->fill($input)->save();
