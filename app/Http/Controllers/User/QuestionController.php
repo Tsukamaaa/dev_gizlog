@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -11,10 +12,12 @@ use App\Models\User;
 class QuestionController extends Controller
 {
     private $question;
+    private $comment;
 
-    public function __construct(Question $question)
+    public function __construct(Question $question, Comment $comment)
     {
         $this->question = $question;
+        $this->comment = $comment;
     }
 
     /**
@@ -24,7 +27,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::paginate(10);
+        $questions = Question::orderBy('created_at', 'desc')->paginate(10);
         return view('user.question.index', compact('questions'));
     }
 
@@ -70,7 +73,9 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $question = $this->question->find($id);
+        $question['user_id'] = Auth::id();
+        return view('user.question.show', compact('question'));
     }
 
     /**
