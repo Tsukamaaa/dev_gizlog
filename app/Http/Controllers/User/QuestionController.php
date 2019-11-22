@@ -24,13 +24,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        // $question = Question::find(2)->user;
         $questions = Question::all();
-        //$questionsと$usersをリレーションするっぽい
-        // dd(Question::all(), $questions);
-        //Question::find()の引数はquestion_id
         return view('user.question.index', compact('questions'));
-        // return view('user.question.index', compact('questions'));
     }
 
     /**
@@ -44,6 +39,17 @@ class QuestionController extends Controller
     }
 
     /**
+     *  Confirmで投稿する内容の確認
+     */
+
+    public function confirm(Request $request)
+    {
+        $question = new Question($request->all());
+        $question['user_id'] = Auth::id();
+        return view('user.question.confirm', compact('question'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -51,7 +57,9 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $this->question->fill($input)->save();
+        return redirect()->route('question.index');
     }
 
     /**
