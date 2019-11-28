@@ -42,6 +42,13 @@ class CommentsTableSeeder extends Seeder
                 'comment' => 'これはCommentテーブルのコメント',
                 'created_at' => Carbon::yesterday(),
                 'updated_at' => Carbon::yesterday(),
+            ],
+            [
+                'user_id' => 4,
+                'question_id' => 1,
+                'comment' => 'これはCommentテーブルのコメント',
+                'created_at' => Carbon::yesterday(),
+                'updated_at' => Carbon::yesterday(),
             ]
         ]);
     }
