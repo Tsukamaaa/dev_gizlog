@@ -40,7 +40,7 @@
           <td class="col-xs-1"><img src="{{ $question->user->avatar }}" class="avatar-img"></td> <!--各ユーザーのアイコンが入る -->
           <td class="col-xs-2">{{ $question->tag_category->name }}</td>
           <td class="col-xs-6">{{  \Illuminate\Support\Str::limit($question->title, 26, '...')  }}</td>
-          <td class="col-xs-1"><span class="point-color"></span></td> <!-- ついたコメントの数が入る-->
+          <td class="col-xs-1"><span class="point-color">{{ $question->comment->count() }}</span></td> <!-- ついたコメントの数が入る-->
           <td class="col-xs-2">
             <a class="btn btn-success" href="{{ route('question.show', $question->id) }}">
               <i class="fa fa-comments-o" aria-hidden="true"></i>
