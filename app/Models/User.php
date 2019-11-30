@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Attendance;
 use App\Models\DailyReport;
+use App\Models\Question;
+use App\Models\Comment;
 use DB;
 use Carbon;
 
@@ -34,6 +36,16 @@ class User extends Authenticatable
     public function dailyReport()
     {
         return $this->hasMany(DailyReport::class, 'user_id');
+    }
+
+    public function question()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Commnet::class);
     }
 
     public function attendance()
