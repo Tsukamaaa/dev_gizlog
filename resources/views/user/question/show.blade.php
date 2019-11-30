@@ -25,17 +25,19 @@
     </div>
   </div>
     <div class="comment-list"> <!--コメント数で条件分岐　ないときは消す-->
+      @foreach ($question->comment as $comment)
         <div class="comment-wrap">
           <div class="comment-title">
-            <img src="" class="avatar-img">
-            <p></p>
-            <p class="comment-date"></p>
+            <img src="{{ $comment->user->avatar }}" class="avatar-img">
+            <p>{{ ($comment->user->name) }}</p>
+            <p class="comment-date">{{ $comment->created_at }}</p>
           </div>
-          <div class="comment-body"></div>
+          <div class="comment-body">{{ $comment->comment }}</div>
         </div>
+      @endforeach
     </div>
   <div class="comment-box">
-    <form>
+    <!-- <form> -->
     {!! Form::open(['route' => 'question.store']) !!} <!--バリデーションエラーの表示処理もする-->
       <!-- <input name="user_id" type="hidden" value=""> -->
       {!! Form::input('hidden', 'user_id', $question->user_id) !!}
@@ -55,7 +57,7 @@
         </button>
       </div>
     {!! Form::close() !!}
-    </form>
+    <!-- </form> -->
   </div>
 </div>
 @endsection
