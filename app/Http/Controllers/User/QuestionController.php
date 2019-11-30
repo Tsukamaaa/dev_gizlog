@@ -62,6 +62,10 @@ class QuestionController extends Controller
     {
         $input = $request->all();
         $this->question->fill($input)->save();
+
+        // $input = $request->all(); これらで条件分岐させる URLか?
+        // $this->comment->fill($input)->save();
+
         return redirect()->route('question.index');
     }
 
