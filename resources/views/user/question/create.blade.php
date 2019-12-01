@@ -6,7 +6,7 @@
   <div class="container">
     {!! Form::open(['route' => 'question.confirm']) !!}
       <div class="form-group">
-        {!! Form::select('tag_category_id', ['Select category', 'front', 'back', 'infra', 'others'], 'Select category', ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) !!}
+        {!! Form::select('tag_category_id', ['' => 'Select category', 1 => 'front', 2 =>'back', 3 => 'infra', 4 => 'others'], 'Select category', ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) !!}
         <!-- <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
           <option value="">Select category</option>
             <option value= "1">front</option>
