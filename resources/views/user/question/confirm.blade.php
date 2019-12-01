@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-    {!! Form::open(['route' => 'question.store']) !!}
+    {!! Form::open(['route' => 'question.questionStore']) !!}
       {!! Form::input('hidden', 'user_id', $question->user_id) !!}
       {!! Form::input('hidden', 'tag_category_id', $question->tag_category_id) !!}
       {!! Form::input('hidden', 'title', $question->title) !!}

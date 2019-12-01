@@ -38,7 +38,7 @@
     </div>
   <div class="comment-box">
     <!-- <form> -->
-    {!! Form::open(['route' => 'question.store']) !!} <!--バリデーションエラーの表示処理もする-->
+    {!! Form::open(['route' => 'question.commentStore']) !!} <!--バリデーションエラーの表示処理もする-->
       <!-- <input name="user_id" type="hidden" value=""> -->
       {!! Form::input('hidden', 'user_id', $question->user_id) !!}
       <!-- <input name="question_id" type="hidden" value=""> -->
