@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class QuestionsRequest extends FormRequest
 {
@@ -23,12 +24,19 @@ class QuestionsRequest extends FormRequest
      */
     public function rules()
     {
-        //
+        return [
+            'tag_category_id' => ['required', 'min:1'],
+            'title' => ['required', 'string', 'max:90'],
+            'content' => ['required', 'string', 'max:1000']
+        ];
     }
 
     public function messages()
     {
-        //
+        return [
+            'tag_category_id.required'           => '入力必須の項目です。',
+            'title.required' => '入力必須の項目です。',
+            'content.required'         => '入力必須の項目です。',
+          ];
     }
 }
-
