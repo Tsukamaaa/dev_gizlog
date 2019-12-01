@@ -8,6 +8,9 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Requests\User\QuestionsRequest;
+use App\Http\Requests\User\CommentRequest;
+
 
 class QuestionController extends Controller
 {
@@ -42,10 +45,10 @@ class QuestionController extends Controller
     }
 
     /**
-     *  Confirmで投稿する内容の確認
+     *  投稿する内容の確認
      */
 
-    public function confirm(Request $request) //ここでバリデーション
+    public function confirm(QuestionsRequest $request) //ここでバリデーション
     {
         $question = new Question($request->all());
         $question['user_id'] = Auth::id();
@@ -58,13 +61,24 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //ここでバリデーションするかは微妙
+    public function questionStore(Request $request) //ここでバリデーションするかは微妙
     {
         $input = $request->all();
         $this->question->fill($input)->save();
 
-        // $input = $request->all(); これらで条件分岐させる URLか?
-        // $this->comment->fill($input)->save();
+        return redirect()->route('question.index');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function commentStore(CommentRequest $request) //ここでバリデーションするかは微妙
+    {
+        $input = $request->all();
+        $this->comment->fill($input)->save();
 
         return redirect()->route('question.index');
     }
