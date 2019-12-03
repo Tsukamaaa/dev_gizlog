@@ -30,7 +30,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::orderBy('created_at', 'desc')->paginate(10);
+        $questions = Question::with(['user', 'tag_category', 'comment'])
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
         return view('user.question.index', compact('questions'));
     }
 
@@ -92,7 +95,11 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = $this->question->find($id);
-        return view('user.question.show', compact('question'));
+        // $comments =$this->comment->get('question_id', $id);
+        //Eager loading $question->comment as $commentでEager loadingを適用させる
+        dd($comments);
+
+        return view('user.question.show', compact('question', 'comments'));
     }
 
     /**
