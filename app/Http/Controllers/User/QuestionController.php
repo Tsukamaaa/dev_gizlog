@@ -92,7 +92,6 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = $this->question->find($id);
-        $question['user_id'] = Auth::id();
         return view('user.question.show', compact('question'));
     }
 
