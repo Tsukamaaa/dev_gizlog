@@ -94,12 +94,10 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $question = $this->question->find($id);
-        // $comments =$this->comment->get('question_id', $id);
-        //Eager loading $question->comment as $commentでEager loadingを適用させる
-        dd($comments);
+        $question = Question::with(['comment', 'comment.user'])
+        ->find($id);
 
-        return view('user.question.show', compact('question', 'comments'));
+        return view('user.question.show', compact('question'));
     }
 
     /**
