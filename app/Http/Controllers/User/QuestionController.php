@@ -48,7 +48,7 @@ class QuestionController extends Controller
      *  投稿する内容の確認
      */
 
-    public function confirm(QuestionsRequest $request) //ここでバリデーション
+    public function confirm(QuestionsRequest $request)
     {
         $question = new Question($request->all());
         $question['user_id'] = Auth::id();
@@ -61,7 +61,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function questionStore(Request $request) //ここでバリデーションするかは微妙
+    public function questionStore(Request $request)
     {
         $input = $request->all();
         $this->question->fill($input)->save();
@@ -75,7 +75,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function commentStore(CommentRequest $request) //ここでバリデーションするかは微妙
+    public function commentStore(CommentRequest $request)
     {
         $input = $request->all();
         $this->comment->fill($input)->save();
