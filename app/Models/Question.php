@@ -12,7 +12,7 @@ class Question extends Model
 {
     use softDeletes;
     protected $dates = [
-        //いったん保留、defaultの日付の形を決めるかどうか
+        'created_at'
     ];
 
     protected $fillable = [
