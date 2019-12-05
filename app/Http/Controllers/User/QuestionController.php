@@ -100,6 +100,15 @@ class QuestionController extends Controller
         return view('user.question.show', compact('question'));
     }
 
+    public function mypage($user_id)
+    {
+        $questions = Question::with(['user', 'tag_category', 'comment'])
+        ->where('user_id', $user_id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        return view('user.question.mypage', compact('questions'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
