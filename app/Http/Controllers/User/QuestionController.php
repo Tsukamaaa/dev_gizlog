@@ -100,7 +100,7 @@ class QuestionController extends Controller
         return view('user.question.show', compact('question'));
     }
 
-    public function mypage($user_id)
+    public function showMypage($user_id)
     {
         $questions = Question::with(['user', 'tag_category', 'comment'])
         ->where('user_id', $user_id)
