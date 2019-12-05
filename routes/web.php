@@ -47,6 +47,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
     Route::post('question/question.store', ['as' => 'question.questionStore', 'uses' => 'QuestionController@questionStore']);
     Route::post('question/comment.store', ['as' => 'question.commentStore', 'uses' => 'QuestionController@commentStore']);
+    Route::get('question/{user_id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@mypage']);
     Route::get('question/{id}', ['as' => 'question.show', 'uses' => 'QuestionController@show']);
 
 });
