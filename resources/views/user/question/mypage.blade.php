@@ -2,7 +2,7 @@
 @section ('content')
 
 <h2 class="brand-header">
-  <img src="" class="avatar-img">&nbsp;&nbsp;My page
+  <img src="{{ Auth::user()->avatar }}" class="avatar-img">&nbsp;&nbsp;My page
 </h2>
 <div class="main-wrap">
   <div class="content-wrapper table-responsive">
@@ -18,11 +18,12 @@
         </tr>
       </thead>
       <tbody>
+      @foreach ($questions as $question)
         <tr class="row">
-          <td class="col-xs-2"></td>
-          <td class="col-xs-1"></td>
-          <td class="col-xs-5"></td>
-          <td class="col-xs-2"><span class="point-color"></span></td>
+          <td class="col-xs-2">{{ $question->created_at->format('Y-m-d') }}</td>
+          <td class="col-xs-1">{{ $question->tag_category->name }}</td>
+          <td class="col-xs-5">{{ $question->title }}</td>
+          <td class="col-xs-2"><span class="point-color">{{ $question->comment->count() }}</span></td>
           <td class="col-xs-1">
             <a class="btn btn-success" href="">
               <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -36,6 +37,7 @@
             </form>
           </td>
         </tr>
+      @endforeach
       </tbody>
     </table>
   </div>
