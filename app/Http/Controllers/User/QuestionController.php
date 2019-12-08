@@ -31,8 +31,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::with(['user', 'tag_category', 'comment'])
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10);
 
         return view('user.question.index', compact('questions'));
     }
@@ -95,7 +95,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::with(['comment', 'comment.user'])
-        ->find($id);
+                    ->find($id);
 
         return view('user.question.show', compact('question'));
     }
@@ -103,9 +103,9 @@ class QuestionController extends Controller
     public function showMypage($user_id)
     {
         $questions = Question::with(['user', 'tag_category', 'comment'])
-        ->where('user_id', $user_id)
-        ->orderBy('created_at', 'desc')
-        ->get();
+                    ->where('user_id', $user_id)
+                    ->orderBy('created_at', 'desc')
+                    ->get();
 
         return view('user.question.mypage', compact('questions'));
     }
@@ -117,7 +117,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = $this->question->find($id);
+
+        return view('user.question.edit', compact('question'));
     }
 
     /**
@@ -127,7 +129,7 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionsRequest $request, $id)
     {
         //
     }
