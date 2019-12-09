@@ -6,7 +6,7 @@
   <div class="container">
     {!! Form::open(['route' => 'question.confirm']) !!}
       <div class="form-group @if ($errors->has('tag_category_id')) has-error @endif">
-        {!! Form::select('tag_category_id', ['' => 'Select category', 1 => 'front', 2 =>'back', 3 => 'infra', 4 => 'others'], 'Select category', ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) !!}
+        {!! Form::select('tag_category_id', ['' => 'Select category', 1 => 'front', 2 =>'back', 3 => 'infra', 4 => 'others'], '', ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) !!}
         @if ($errors->has('tag_category_id'))
           <span class="help-block" role="alert">
             <strong>{{ $errors->first('tag_category_id') }}</strong>
