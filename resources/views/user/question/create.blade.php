@@ -4,7 +4,7 @@
 <h2 class="brand-header">質問投稿</h2>
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => 'question.confirm']) !!}
+    {!! Form::open(['route' => 'question.create.confirm']) !!}
       <div class="form-group @if ($errors->has('tag_category_id')) has-error @endif">
         {!! Form::select('tag_category_id', ['' => 'Select category', 1 => 'front', 2 =>'back', 3 => 'infra', 4 => 'others'], '', ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) !!}
         @if ($errors->has('tag_category_id'))
