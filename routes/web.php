@@ -44,12 +44,12 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     // Route::resource('question', QuestionController::class);
     Route::get('question/index', ['as' => 'question.index', 'uses' => 'QuestionController@index']);
     Route::get('question/create', ['as' => 'question.create', 'uses' => 'QuestionController@create']);
-    Route::post('question/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
+    Route::post('question/confirm', ['as' => 'question.create.confirm', 'uses' => 'QuestionController@confirm']);
     Route::post('question/question.store', ['as' => 'question.questionStore', 'uses' => 'QuestionController@questionStore']);
     Route::post('question/comment.store', ['as' => 'question.commentStore', 'uses' => 'QuestionController@commentStore']);
     Route::get('question/{user_id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@showMypage']);
     Route::get('question/{id}/edit', ['as' => 'question.edit', 'uses' => 'QuestionController@edit']);
-    Route::post('question/update', ['as' => 'question.update', 'uses' => 'QuestionController@update']);
+    Route::put('question/{id}/confirm', ['as' => 'question.update.confirm', 'uses' => 'QuestionController@confirm']);
     Route::get('question/{id}', ['as' => 'question.show', 'uses' => 'QuestionController@show']);
 
 });
