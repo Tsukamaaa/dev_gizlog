@@ -30,10 +30,13 @@
             </a>
           </td>
           <td class="col-xs-1">
-            <form>
-              <button class="btn btn-danger" type="submit">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
+            <!-- <form> -->
+            {!! Form::open(['route' => ['question.destroy', $question->id], 'method' => 'DELETE']) !!}
+              <!-- <button class="btn btn-danger" type="submit"> -->
+              {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
+                <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
+              <!-- </button> -->
+            {!! Form::close() !!}
             </form>
           </td>
         </tr>
