@@ -11,7 +11,6 @@ use App\Models\User;
 use App\Http\Requests\User\QuestionsRequest;
 use App\Http\Requests\User\CommentRequest;
 
-
 class QuestionController extends Controller
 {
     private $question;
@@ -118,7 +117,6 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = $this->question->find($id);
-
         return view('user.question.edit', compact('question'));
     }
 
@@ -129,9 +127,13 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(QuestionsRequest $request, $id)
+    public function update(Request $request)
     {
-        //
+        $input = $request->all();
+        $id = $input['id'];
+        $this->question->find($id)->fill($input)->save();
+
+        return redirect()->route('question.index');
     }
 
     /**
@@ -142,6 +144,7 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->question->find($id)->delete();
+        return redirect()->route('question.index');
     }
 }
