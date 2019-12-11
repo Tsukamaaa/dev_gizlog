@@ -16,6 +16,7 @@ class Question extends Model
     ];
 
     protected $fillable = [
+        'id',
         'user_id',
         'tag_category_id',
         'title',
