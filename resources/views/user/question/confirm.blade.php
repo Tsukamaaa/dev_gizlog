@@ -23,7 +23,12 @@
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-    {!! Form::open(['route' => 'question.questionStore']) !!}
+    @if (Request::is('question/*/confirm'))
+      {!! Form::open(['route' => 'question.update', 'method' => 'PUT']) !!}
+      {!! Form::input('hidden', 'id', $question->id) !!}
+    @endif
+
+    @if (Request::is('question/confirm')) {!! Form::open(['route' => 'question.questionStore']) !!} @endif
       {!! Form::input('hidden', 'user_id', $question->user_id) !!}
       {!! Form::input('hidden', 'tag_category_id', $question->tag_category_id) !!}
       {!! Form::input('hidden', 'title', $question->title) !!}
