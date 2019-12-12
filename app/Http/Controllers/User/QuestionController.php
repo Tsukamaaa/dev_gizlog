@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Comment;
+use App\Models\TagCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -15,11 +16,13 @@ class QuestionController extends Controller
 {
     private $question;
     private $comment;
+    private $tag_category;
 
-    public function __construct(Question $question, Comment $comment)
+    public function __construct(Question $question, Comment $comment, TagCategory $tag_category)
     {
         $this->question = $question;
         $this->comment = $comment;
+        $this->tag_category = $tag_category;
     }
 
     /**
@@ -27,13 +30,20 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::with(['user', 'tag_category', 'comment'])
+        $questions = $this->question
+                    ->with(['user', 'tag_category', 'comment'])
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
-
-        return view('user.question.index', compact('questions'));
+        $tag_categories = $this->tag_category
+                        ->with('question')
+                        ->get();
+        
+        // if (url()->previous() === url()->current()) {
+        //     dd($request->all());
+        // }
+        return view('user.question.index', compact('questions', 'tag_categories'));
     }
 
     /**
@@ -145,6 +155,7 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $this->question->find($id)->delete();
+        $this->comment->where('question_id', $id)->delete();
         return redirect()->route('question.index');
     }
 }
