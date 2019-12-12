@@ -3,7 +3,7 @@
 
 <h2 class="brand-header">質問一覧</h2>
 <div class="main-wrap">
-  <form>
+    {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
         <input class="form-control search-form" placeholder="Search words..." name="search_word" type="text">
@@ -14,15 +14,20 @@
         <i class="fa fa-user" aria-hidden="true"></i>
       </a>
     </div>
+
     <div class="category-wrap">
       <div class="btn all" id="0">all</div>
-      <div class="btn front" id="1">front</div>
-      <div class="btn back" id="2">back</div>
+      @foreach ($tag_categories as $tag_category)
+      <div class="btn {{ $tag_category->name }}" id="{{ $tag_category->question->tag_category_id }}">{{ $tag_category->name }}</div>
+      <!-- <div class="btn back" id="2">back</div>
       <div class="btn infra" id="3">infra</div>
-      <div class="btn others" id="4">others</div>
-      <input id="category-val" name="tag_category_id" type="hidden" value="">
+      <div class="btn others" id="4">others</div> -->
+      @endforeach
+      {!! Form::input('hidden', 'tag_category_id', '0', ['id' => 'category-val']) !!}
     </div>
-  </form>
+
+  {!! Form::close() !!}
+
   <div class="content-wrapper table-responsive">
     <table class="table table-striped">
       <thead>
