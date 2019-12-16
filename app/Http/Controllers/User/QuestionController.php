@@ -34,15 +34,14 @@ class QuestionController extends Controller
     {
         $questions = $this->question
                     ->with(['user', 'tag_category', 'comment'])
+                    ->getTagCategory($request)
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
+
         $tag_categories = $this->tag_category
                         ->with('question')
                         ->get();
-        
-        // if (url()->previous() === url()->current()) {
-        //     dd($request->all());
-        // }
+
         return view('user.question.index', compact('questions', 'tag_categories'));
     }
 
