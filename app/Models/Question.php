@@ -37,4 +37,12 @@ class Question extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function scopeGetTagCategory($query, $request)
+    {
+        if (!empty($request->input('tag_category_id'))) {
+            $query->where('tag_category_id', $request->input('tag_category_id'));
+        }
+        return $query;
+    }
 }
