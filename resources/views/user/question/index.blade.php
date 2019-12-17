@@ -16,14 +16,11 @@
     </div>
 
     <div class="category-wrap">
-      <div class="btn all" id="0">all</div>
+      <div class="btn all @if ($tag_category_id === '0') selected @endif" id='0'>all</div>
       @foreach ($tag_categories as $tag_category)
-      <div class="btn {{ $tag_category->name }}" id="{{ $tag_category->question->tag_category_id }}">{{ $tag_category->name }}</div>
-      <!-- <div class="btn back" id="2">back</div>
-      <div class="btn infra" id="3">infra</div>
-      <div class="btn others" id="4">others</div> -->
+      <div class="btn {{ $tag_category->name }} @if ($tag_category_id === $tag_category->id) selected @endif" id={{ $tag_category->question->tag_category_id }}>{{ $tag_category->name }}</div>
       @endforeach
-      {!! Form::input('hidden', 'tag_category_id', '0', ['id' => 'category-val']) !!}
+      {!! Form::input('hidden', 'tag_category_id', 0, ['id' => 'category-val']) !!}
     </div>
 
   {!! Form::close() !!}
