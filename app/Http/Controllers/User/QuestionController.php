@@ -42,7 +42,8 @@ class QuestionController extends Controller
                         ->with('question')
                         ->get();
 
-        return view('user.question.index', compact('questions', 'tag_categories'));
+        $tag_category_id = (int)$request->input('tag_category_id');
+        return view('user.question.index', compact('questions', 'tag_categories', 'tag_category_id'));
     }
 
     /**
