@@ -16,7 +16,7 @@
     </div>
 
     <div class="category-wrap">
-      <div class="btn all @if ($tag_category_id === '0') selected @endif" id='0'>all</div>
+      <div class="btn all @if ($tag_category_id === 0) selected @endif" id='0'>all</div>
       @foreach ($tag_categories as $tag_category)
       <div class="btn {{ $tag_category->name }} @if ($tag_category_id === $tag_category->id) selected @endif" id={{ $tag_category->question->tag_category_id }}>{{ $tag_category->name }}</div>
       @endforeach
