@@ -6,7 +6,7 @@
     {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'search-category']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        <input class="form-control search-form" placeholder="Search words..." name="search_word" type="text">
+        <input class="form-control search-form" value="{{ $request->search_word }}" placeholder="Search words..." name="search_word" type="text">
         <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
