@@ -45,4 +45,11 @@ class Question extends Model
         }
         return $query;
     }
+
+    public function scopeSearchWord($query, $request)
+    {
+        if (!empty($request->input('search_word'))) {
+            $query->where('title', 'LIKE', '%'.$request->input('search_word').'%');
+        }
+    }
 }
