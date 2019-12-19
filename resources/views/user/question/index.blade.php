@@ -6,7 +6,7 @@
     {!! Form::open(['route' => 'question.index', 'method' => 'GET', 'id' => 'search-category']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        <input class="form-control search-form" value="{{ $request->search_word }}" placeholder="Search words..." name="search_word" type="text">
+        <input class="form-control search-form" value="{{ old('search_word') }}" placeholder="Search words..." name="search_word" type="text">
         <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -16,11 +16,11 @@
     </div>
 
     <div class="category-wrap">
-      <div class="btn all @if ($tag_category_id === 0) selected @endif" id='0'>all</div>
+      <div class="btn all @if ($request->tag_category_id === 0) selected @endif">all</div>
       @foreach ($tag_categories as $tag_category)
-      <div class="btn {{ $tag_category->name }} @if ($tag_category_id === $tag_category->id) selected @endif" id={{ $tag_category->question->tag_category_id }}>{{ $tag_category->name }}</div>
+      <div class="btn {{ $tag_category->name }} @if ($request->tag_category_id === $tag_category->id) selected @endif" id={{ $tag_category->question->tag_category_id }}>{{ $tag_category->name }}</div>
       @endforeach
-      {!! Form::input('hidden', 'tag_category_id', 0, ['id' => 'category-val']) !!}
+      {!! Form::input('hidden', 'tag_category_id', old('tag_category_id'), ['id' => 'category-val']) !!}
     </div>
 
   {!! Form::close() !!}
@@ -39,7 +39,7 @@
       <tbody>
         @foreach ($questions as $question)
         <tr class="row">
-          <td class="col-xs-1"><img src="{{ $question->user->avatar }}" class="avatar-img"></td>
+        <td class="col-xs-1"><img src="{{ $question->user->avatar }}" class="avatar-img"></td>
           <td class="col-xs-2">{{ $question->tag_category->name }}</td>
           <td class="col-xs-6">{{  \Illuminate\Support\Str::limit($question->title, 26, '...')  }}</td>
           <td class="col-xs-1"><span class="point-color">{{ $question->comment->count() }}</span></td>
