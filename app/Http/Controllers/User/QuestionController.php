@@ -26,7 +26,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 質問一覧表示
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,12 +43,14 @@ class QuestionController extends Controller
                         ->with('question')
                         ->get();
 
-        $tag_category_id = (int)$request->input('tag_category_id');
-        return view('user.question.index', compact('questions', 'tag_categories', 'tag_category_id', 'request'));
+        $request['tag_category_id'] = (int)$request->input('tag_category_id');
+        $request->flashOnly('tag_category_id', 'search_word');
+
+        return view('user.question.index', compact('questions', 'tag_categories', 'request'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 新規作成画面表示
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,17 +61,19 @@ class QuestionController extends Controller
 
     /**
      *  投稿する内容の確認
+     * @param  \Illuminate\Http\QuestionsReques  $request
+     * @return \Illuminate\Http\Response
      */
-
     public function confirm(QuestionsRequest $request)
     {
         $question = new Question($request->all());
         $question['user_id'] = Auth::id();
+
         return view('user.question.confirm', compact('question'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 質問の投稿
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -83,9 +87,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * コメントの投稿
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CommentRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function commentStore(CommentRequest $request)
@@ -97,7 +101,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 質問詳細表示
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -110,6 +114,12 @@ class QuestionController extends Controller
         return view('user.question.show', compact('question'));
     }
 
+    /**
+     * Mypageの表示
+     *
+     * @param  int $user_id
+     * @return \Illuminate\Http\Response
+     */
     public function showMypage($user_id)
     {
         $questions = Question::with(['user', 'tag_category', 'comment'])
@@ -120,7 +130,7 @@ class QuestionController extends Controller
         return view('user.question.mypage', compact('questions'));
     }
     /**
-     * Show the form for editing the specified resource.
+     * 質問更新画面の表示
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -132,7 +142,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 質問の更新
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -148,7 +158,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 質問とコメントのsoftDelete
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
