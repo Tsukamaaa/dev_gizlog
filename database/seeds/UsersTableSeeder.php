@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -31,6 +32,8 @@ class UsersTableSeeder extends Seeder
                 'created_at'    => Carbon::create(2017, 7, 16),
             ]
         ]);
+
+        factory(User::class, 30)->create();
     }
 }
 

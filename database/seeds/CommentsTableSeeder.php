@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-use App\Models\Comments;
+use App\Models\Comment;
 
 class CommentsTableSeeder extends Seeder
 {
@@ -14,42 +14,6 @@ class CommentsTableSeeder extends Seeder
     public function run()
     {
         DB::table('comments')->truncate();
-        DB::table('comments')->insert([
-            [
-                'user_id' => 4,
-                'question_id' => 3,
-                'comment' => 'これはCommentテーブルのコメント',
-                'created_at' => Carbon::yesterday(),
-                'updated_at' => Carbon::yesterday()
-            ],
-            [
-                'user_id' => 4,
-                'question_id' => 3,
-                'comment' => 'これはCommentテーブルのコメント',
-                'created_at' => Carbon::yesterday(),
-                'updated_at' => Carbon::yesterday(),
-            ],
-            [
-                'user_id' => 4,
-                'question_id' => 3,
-                'comment' => 'これはCommentテーブルのコメント',
-                'created_at' => Carbon::yesterday(),
-                'updated_at' => Carbon::yesterday(),
-            ],
-            [
-                'user_id' => 4,
-                'question_id' => 3,
-                'comment' => 'これはCommentテーブルのコメント',
-                'created_at' => Carbon::yesterday(),
-                'updated_at' => Carbon::yesterday(),
-            ],
-            [
-                'user_id' => 4,
-                'question_id' => 1,
-                'comment' => 'これはCommentテーブルのコメント',
-                'created_at' => Carbon::yesterday(),
-                'updated_at' => Carbon::yesterday(),
-            ]
-        ]);
+        factory(Comment::class, 100)->create();
     }
 }
