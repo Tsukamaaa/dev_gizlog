@@ -61,6 +61,7 @@ class QuestionController extends Controller
 
     /**
      *  投稿する内容の確認
+     *
      * @param  \Illuminate\Http\QuestionsReques  $request
      * @return \Illuminate\Http\Response
      */
