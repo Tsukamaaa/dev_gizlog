@@ -33,4 +33,3 @@ class CommentRequest extends FormRequest
         return [];
     }
 }
-
